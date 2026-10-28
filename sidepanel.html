@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Suno Downloader</title>
+  <link rel="stylesheet" href="sidepanel.css">
+  <script type="module" src="sidepanel.js"></script>
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10.5m0 0-4.5-4.5m4.5 4.5 4.5-4.5M5.5 19.5h13"/></svg>
+      </span>
+      <h1>Suno Downloader</h1>
+    </div>
+    <span id="account" class="account">Not connected</span>
+  </header>
+
+  <section id="connect" class="connect">
+    <div class="pile" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10.5m0 0-4.5-4.5m4.5 4.5 4.5-4.5M5.5 19.5h13"/></svg></span>
+    </div>
+    <h2>Connect your Suno tab</h2>
+    <p id="connect-message">Looking for your suno.com tab…</p>
+    <div class="actions">
+      <button id="open-suno" type="button" class="btn primary">Open suno.com</button>
+      <button id="reconnect" type="button" class="btn">Connect</button>
+    </div>
+  </section>
+
+  <main id="app" hidden>
+    <div class="toolbar">
+      <div class="select">
+        <select id="workspace" aria-label="Workspace"></select>
+      </div>
+      <button id="refresh" type="button" class="icon-btn" title="Reload the song list" aria-label="Reload the song list">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4.5v4.5H15"/></svg>
+      </button>
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg>
+        <input id="filter" type="search" placeholder="Filter by title" dir="auto" aria-label="Filter by title">
+      </label>
+    </div>
+
+    <div class="list-head">
+      <label class="check">
+        <input id="select-all" type="checkbox">
+        <span>Select all</span>
+      </label>
+      <span id="select-count" class="count"></span>
+    </div>
+
+    <div id="list" class="list">
+      <ul id="songs" class="songs"></ul>
+      <p id="no-match" class="list-status" hidden></p>
+      <p id="list-status" class="list-status" hidden></p>
+      <button id="load-more" type="button" class="btn more" hidden>Load more</button>
+    </div>
+
+    <footer class="dock">
+      <ol id="jobs" class="jobs"></ol>
+      <p id="summary" class="summary" hidden></p>
+
+      <div class="options">
+        <span id="format-label" class="option-label">Format</span>
+        <fieldset id="format" class="segmented" aria-labelledby="format-label">
+          <label title="The file exactly as Suno serves it, no re-encoding"><input type="radio" name="format" value="original" checked>Original <small>.m4a</small></label>
+          <label title="Re-encoded to MP3 at 320 kbps"><input type="radio" name="format" value="mp3">MP3 <small>320k</small></label>
+        </fieldset>
+        <label for="folder" class="option-label">Save to</label>
+        <div class="field">
+          <span class="prefix">Downloads/</span>
+          <input id="folder" type="text" value="Suno" spellcheck="false">
+        </div>
+      </div>
+
+      <div class="go">
+        <div id="stack" class="stack" aria-hidden="true"></div>
+        <button id="download" type="button" class="btn primary download" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v10.5m0 0-4.5-4.5m4.5 4.5 4.5-4.5M5.5 19.5h13"/></svg>
+          <span id="download-label">Select songs to download</span>
+        </button>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Suno Song Downloader",
+  "version": "1.0.0",
+  "description": "Download and decrypt your own Suno songs using the account signed in on your suno.com tab.",
+  "minimum_chrome_version": "116",
+  "permissions": ["sidePanel", "scripting", "downloads", "storage"],
+  "host_permissions": [
+    "https://suno.com/*",
+    "https://*.suno.com/*",
+    "https://*.suno.ai/*",
+    "https://*.cloudfront.net/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "action": {
+    "default_title": "Suno Song Downloader",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

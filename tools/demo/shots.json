@@ -1,0 +1,227 @@
+{
+  "base_url": "chrome-extension://{extension}/",
+  "viewport": {
+    "width": 400,
+    "height": 800
+  },
+  "scale": 2,
+  "color_scheme": "dark",
+  "delay": 700,
+  "setup": [
+    {
+      "goto": "sidepanel.html"
+    },
+    {
+      "wait_for": "li.song"
+    }
+  ],
+  "shots": [
+    {
+      "name": "01-hero",
+      "path": "sidepanel.html",
+      "actions": [
+        {
+          "wait_for": "li.song:has-text('Midnight Static')"
+        },
+        {
+          "click": "li.song:has-text('Midnight Static')"
+        },
+        {
+          "click": "li.song:has-text('شب‌های تهران')"
+        },
+        {
+          "click": "li.song:has-text('Neon Cathedral')"
+        },
+        {
+          "click": "li.song:has-text('Saltwater Hymn')"
+        },
+        {
+          "hover": "h1"
+        }
+      ]
+    },
+    {
+      "name": "02-connect-no-tab",
+      "actions": [
+        {
+          "eval": "chrome.tabs.query({url: ['https://suno.com/*']}).then((tabs) => chrome.tabs.remove(tabs.map((tab) => tab.id)))"
+        },
+        {
+          "reload": true
+        },
+        {
+          "wait_for": "text=No suno.com tab is open"
+        }
+      ]
+    },
+    {
+      "name": "03-connected",
+      "actions": [
+        {
+          "click": "#open-suno"
+        },
+        {
+          "wait": 300
+        },
+        {
+          "eval": "chrome.tabs.getCurrent().then((tab) => chrome.tabs.update(tab.id, {active: true}))"
+        },
+        {
+          "wait_for": "li.song:has-text('Midnight Static')"
+        },
+        {
+          "hover": "h1"
+        }
+      ]
+    },
+    {
+      "name": "04-workspace",
+      "actions": [
+        {
+          "select": [
+            "#workspace",
+            "ws-halloween"
+          ]
+        },
+        {
+          "wait_for": "li.song:has-text('Hollow Moon')"
+        },
+        {
+          "hover": "h1"
+        }
+      ]
+    },
+    {
+      "name": "05-filter",
+      "actions": [
+        {
+          "select": [
+            "#workspace",
+            "default"
+          ]
+        },
+        {
+          "wait_for": "li.song:has-text('Midnight Static')"
+        },
+        {
+          "fill": [
+            "#filter",
+            "night"
+          ]
+        },
+        {
+          "eval": "document.activeElement.blur()"
+        },
+        {
+          "hover": "h1"
+        }
+      ]
+    },
+    {
+      "name": "06-download-progress",
+      "path": "sidepanel.html",
+      "actions": [
+        {
+          "wait_for": "li.song:has-text('Midnight Static')"
+        },
+        {
+          "eval": "fetch('https://suno.com/__demo/hold?title=Neon%20Cathedral')"
+        },
+        {
+          "click": "li.song:has-text('Midnight Static')"
+        },
+        {
+          "click": "li.song:has-text('شب‌های تهران')"
+        },
+        {
+          "click": "li.song:has-text('Paper Lanterns')"
+        },
+        {
+          "click": "li.song:has-text('Neon Cathedral')"
+        },
+        {
+          "click": "li.song:has-text('Velvet Undertow')"
+        },
+        {
+          "eval": "document.getElementById('list').scrollTop = 0"
+        },
+        {
+          "click": "#download"
+        },
+        {
+          "wait_for": "text=Downloading 4 of 5"
+        },
+        {
+          "hover": "h1"
+        }
+      ]
+    },
+    {
+      "name": "07-download-done",
+      "actions": [
+        {
+          "eval": "fetch('https://suno.com/__demo/release')"
+        },
+        {
+          "wait_for": "#summary"
+        },
+        {
+          "hover": "h1"
+        }
+      ]
+    },
+    {
+      "name": "08-mp3",
+      "path": "sidepanel.html",
+      "selector": ".dock",
+      "actions": [
+        {
+          "wait_for": "li.song:has-text('Saltwater Hymn')"
+        },
+        {
+          "click": ".segmented label:has-text('MP3')"
+        },
+        {
+          "click": "li.song:has-text('Saltwater Hymn')"
+        },
+        {
+          "click": "#download"
+        },
+        {
+          "wait_for": "#summary"
+        }
+      ],
+      "hide": [
+        "#list"
+      ]
+    },
+    {
+      "name": "09-light",
+      "path": "sidepanel.html",
+      "color_scheme": "light",
+      "actions": [
+        {
+          "wait_for": "li.song:has-text('Midnight Static')"
+        },
+        {
+          "click": ".segmented label:has-text('Original')"
+        },
+        {
+          "click": "li.song:has-text('Midnight Static')"
+        },
+        {
+          "click": "li.song:has-text('شب‌های تهران')"
+        },
+        {
+          "click": "li.song:has-text('Neon Cathedral')"
+        },
+        {
+          "click": "li.song:has-text('Saltwater Hymn')"
+        },
+        {
+          "hover": "h1"
+        }
+      ]
+    }
+  ]
+}
